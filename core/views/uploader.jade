@@ -1,3 +1,9 @@
-div.splash
-  if post.image 
-    img(src=post.image)
+extend main
+
+block splash
+  div.splash.dropspot
+
+block content
+  form(action="/upload", method="post", enctype="multipart/form-data")
+    input(type="file",name="image")
+    input(type="submit",name="submit")

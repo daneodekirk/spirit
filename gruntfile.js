@@ -8,32 +8,32 @@ module.exports = function(grunt) {
       },
       client: {
         libraries: [
-          'assets/js/lib/jquery.js',
-          'assets/js/lib/underscore.js',
-          'assets/js/lib/backbone.js',
+          'core/assets/libraries/jquery.js',
+          'core/assets/libraries/underscore.js',
+          'core/assets/libraries/backbone.js',
         ],
         custom: [
         ],
         src: [ '<%= concat.client.libraries %>', '<%= concat.client.custom %>' ],
-        dest: 'assets/js/spirit.dev.js'
+        dest: 'assets/spirit.dev.js'
       },
       admin: {
         libraries: [
-          'assets/js/lib/jquery.js',
-          'assets/js/admin/jquery.filedrop.js',
-          'assets/js/admin/medium-editor.js',
-          'assets/js/admin/medium-editor-insert-plugin.js',
-          'assets/js/admin/medium-editor-insert-images.js',
-          'assets/js/admin/moment.js',
-          'assets/js/admin/chrono.min.js',
+          //'core/assets/libraries/jquery.js',
+          'core/assets/libraries/jquery.filedrop.js',
+//          'assets/js/admin/medium-editor.js',
+//          'assets/js/admin/medium-editor-insert-plugin.js',
+//          'assets/js/admin/medium-editor-insert-images.js',
+//          'assets/js/admin/moment.js',
+//          'assets/js/admin/chrono.min.js',
         ],
         custom: [
-          'assets/js/admin/dropspots.js',
-          'assets/js/admin/edit-post.js',
-          'assets/js/admin/edit-post-date.js',
+          'core/assets/uploader/uploader.js',
+//          'core/assets//edit-post.js',
+//          'core/assets//edit-post-date.js',
         ],
         src: [ '<%= concat.admin.libraries %>', '<%= concat.admin.custom %>' ],
-        dest: 'assets/js/admin.dev.js'
+        dest: 'assets/admin.dev.js'
       }
 
     },
@@ -43,8 +43,8 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'assets/js/spirit.js': ['<%= concat.client.dest %>'],
-          'assets/js/admin.js': ['<%= concat.admin.dest %>']
+          'assets/spirit.js': ['<%= concat.client.dest %>'],
+          'assets/admin.js': ['<%= concat.admin.dest %>']
         }
       }
     },
@@ -78,14 +78,14 @@ module.exports = function(grunt) {
           cleancss: true
         },
         files: {
-          'assets/css/style.css': 'assets/less/style.less',
-          'assets/css/admin.css': 'assets/less/admin.less'
+          'assets/spirit.css': 'core/assets/spirit.less',
+          'assets/admin.css': 'core/assets/admin.less'
         }
 		  },
       development: {
         files: {
-          'assets/css/style.dev.css': 'assets/less/style.less',
-          'assets/css/admin.dev.css': 'assets/less/admin.less'
+          'assets/spirit.dev.css': 'core/assets/spirit.less',
+          'assets/admin.dev.css': 'core/assets/admin.less'
         }
       }	
     },

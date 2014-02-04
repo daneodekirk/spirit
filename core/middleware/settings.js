@@ -3,8 +3,6 @@ var express = require('express')
   , settings = require('../models/settings')
 
 module.exports = function() {
-    
-  console.log('middleware load site settings')
 
     return function(req, res, next) {
 
