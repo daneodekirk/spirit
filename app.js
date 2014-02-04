@@ -4,18 +4,18 @@ var mongoose = require('mongoose')
 var busboy   = require('connect-busboy')
 var app      = express()
 
-var spirit = require('./core')
-app.use( spirit )
-
 app.use( express.json() )
 app.use( express.urlencoded() )
 app.use( busboy() )
 
 app.use( express.static( path.join( __dirname, 'assets' )))
 
+var spirit = require('./core')(app)
 
 app.set( 'views', __dirname + '/core/views' )
 app.set( 'view engine', 'jade' )
+
+app.locals.pretty = true
 
 mongoose.connect( 'mongodb://localhost/spirit', function (err) {
   if (err) return console.log(err)

@@ -1,0 +1,43 @@
+extend main
+
+block splash
+  div.splash.dropspot
+    img(src=Spirit.image)
+
+block content
+  div.container
+    div.col-lg-offset-2.col-lg-8
+      h1 Settings
+    div.col-lg-offset-2.col-lg-8
+      form.form-horizontal(action='/settings', method='post',role='form')
+        input.dropspot(name='image',type='hidden',value=Spirit.image )
+
+        div.form-group
+          label.col-lg-2.control-label(for='title') Title
+          div.col-lg-10
+            input.form-control(name='title', type='text', placeholder='Title', value=Spirit.title ) 
+            p.help-block Blog title
+
+        div.form-group
+          label.col-lg-2.control-label(for='description') Description
+          div.col-lg-10
+            input.form-control(name='description', type='text', placeholder='Description', value=Spirit.description) 
+            p.help-block Blog title
+
+        div.form-group
+          label.col-lg-2.control-label(for='postsperpage') Description
+          div.col-lg-2
+            input.form-control(name='postsperpage', type='number', value=Spirit.postsperpage ) 
+            p.help-block Blog title
+
+        div.form-group
+          label.col-sm-2.control-label(for='permalinks') Permalinks
+          div.col-sm-10
+            div.checkbox
+              label
+                input(name='permalinks', type='checkbox', checked=(Spirit.permalinks ? "checked" : null ) ) 
+                | permalinks
+
+        div.form-group
+          div.pull-right
+            button.btn.btn-default(type='submit') Save
