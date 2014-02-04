@@ -576,7 +576,8 @@
     },
 
     finished: function( index, file, res, time ) {
-      this.$el.html('<img src="'+ res +'"/>')
+      //this.$el.html('<img src="'+ res +'"/>')
+      this.$el.css('background-image', 'url('+ res +')' )
       $(this.input).val( res );
     }
 

@@ -10,6 +10,8 @@ module.exports = function( app ) {
 
     req.body.permalinks = !! req.body.permalinks
 
+    console.log( 'Saving site settings: ' + JSON.stringify(req.body) )
+
     settings 
       .findOne({ _id: req.body.id })
       .update( req.body , function( err, affected, raw ) {

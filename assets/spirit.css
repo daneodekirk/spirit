@@ -1,1 +1,1 @@
-.splash.dropspot{width:100%;height:500px;border:thin solid red}
+.splash{position:relative;width:100%;height:500px;background-size:100%}.splash.dropspot>.drag-over{position:absolute;width:100%;height:100%;background:rgba(255,165,0,.5);z-index:250000;text-align:center;opacity:0;-webkit-transition:opacity 250ms;-moz-transition:opacity 250ms;-ms-transition:opacity 250ms;-o-transition:opacity 250ms;transition:opacity 250ms}.splash.dropspot:hover>.drag-over{opacity:1}

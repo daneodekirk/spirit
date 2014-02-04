@@ -7,7 +7,7 @@ module.exports = function() {
     return function(req, res, next) {
 
       // [TODO] better conditional
-      if ( app.locals.Spirit && req.url != '/settings/' ) {
+      if ( app.locals.Spirit && req.url.indexOf( 'settings' ) === -1 ) {
         res.locals.Spirit = app.locals.Spirit
         console.log('loading site settings from cache')
         return next()
