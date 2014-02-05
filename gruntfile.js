@@ -39,7 +39,7 @@ module.exports = function(grunt) {
     },
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today() %> */\n'
+        //banner: '/*! <%= pkg.name %> <%= grunt.template.today() %> */\n'
       },
       dist: {
         files: {

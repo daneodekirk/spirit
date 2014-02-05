@@ -555,10 +555,16 @@
 })(jQuery);
 ;(function($) {
 
+  // [TODO] add events for dragstart 
+  // [TODO] render div.drag-over with underscore
   var Dropspot = Backbone.View.extend({
 
     el  : '.splash.dropspot',
     input : 'input.dropspot',
+
+    events : {
+      'hover .drag-over' : 'overlay'     
+    },
 
     settings: {
       url         : '/upload',
@@ -576,8 +582,7 @@
     },
 
     finished: function( index, file, res, time ) {
-      //this.$el.html('<img src="'+ res +'"/>')
-      this.$el.css('background-image', 'url('+ res +')' )
+      this.$el.css( 'background-image', 'url('+ res +')' )
       $(this.input).val( res );
     }
 
