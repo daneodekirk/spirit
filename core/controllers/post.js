@@ -2,33 +2,25 @@ var Post = require('../models/post')
 
 module.exports = function ( app ) {
 
-  //app.use(function(req, res, next) {
-  //    console.log('here') 
-  //    next()
-  //})
-
   app.get( '/', function(req, res) {
 
-    Post.find(function( err, posts) {
-      res.render('posts', { posts  : posts, })
+    Post.find( function( err, posts) {
+      res.render('posts', { posts : posts })
     })
 
   })
 
-//  app.get('/edit/:id', function(req, res) {
-//
-//    Post.findOne({ _id : req.params.id }, function(err, post) {
-//      res.render('new', { post: post }) 
-//    })
-//       
-//  })
-//  
-//
 
-  app.get( '/post/new', function(req, res) {
+  app.get( '/post/:id', function(req, res) {
+    res.render('post', {post : {} })
+  })
 
-    res.render('new', {post : {}})
+  app.put('/post/:id', function(req, res) {
 
+    Post.findOne({ _id : req.params.id }, function(err, post) {
+      res.render('new', { post: post }) 
+    })
+       
   })
 
 //

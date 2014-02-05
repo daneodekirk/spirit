@@ -1,9 +1,15 @@
 (function($) {
 
+  // [TODO] add events for dragstart 
+  // [TODO] render div.drag-over with underscore
   var Dropspot = Backbone.View.extend({
 
     el  : '.splash.dropspot',
     input : 'input.dropspot',
+
+    events : {
+      'hover .drag-over' : 'overlay'     
+    },
 
     settings: {
       url         : '/upload',

@@ -1,8 +1,10 @@
 extend main
 
 block splash
-  div.splash.dropspot(style="background-image:url("+ Spirit.image +")")
-    div.drag-over
+  a.splash.dropspot(style="background-image:url("+ Spirit.image +")",href="/")
+    div.drag-over.
+      Drop an image here to update this one
+      
 
 block content
   div.container
@@ -22,13 +24,13 @@ block content
           label.col-lg-2.control-label(for='description') Description
           div.col-lg-10
             input.form-control(name='description', type='text', placeholder='Description', value=Spirit.description) 
-            p.help-block Blog title
+            p.help-block Blog description
 
         div.form-group
-          label.col-lg-2.control-label(for='postsperpage') Description
+          label.col-lg-2.control-label(for='postsperpage') Posts per page
           div.col-lg-2
             input.form-control(name='postsperpage', type='number', value=Spirit.postsperpage ) 
-            p.help-block Blog title
+            p.help-block Number of posts before pagination
 
         div.form-group
           label.col-sm-2.control-label(for='permalinks') Permalinks
