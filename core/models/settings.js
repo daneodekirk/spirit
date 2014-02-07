@@ -4,7 +4,7 @@ var mongoose = require('mongoose')
 var SpiritSchema = new Schema({
   title        : { type: String, default: 'Spirit' },
   description  : { type: String, default: 'Just a blogging platform' },
-  image        : { type: String, default: '' },
+  image        : { type: String, default: '/uploads/bananas-and-kiwi-fruit-in-fruit-bowl-in-sunshine-closeup-3-JR.jpg' },
   postsperpage : { type: Number, default: 5 },
   permalinks   : { type: Boolean, default: true },
 })

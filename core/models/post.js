@@ -4,11 +4,11 @@ var mongoose = require('mongoose')
   , Schema   = mongoose.Schema
 
 var Post = new Schema({
-  title  : String,
-  author : String,
-  body   : String,
-  slug   : String,
-  image  : String,
+  title  : { type: String, default: 'Post title' }, 
+  author : { type: String, default: '' },
+  body   : { type: String, default: 'Post content' },
+  slug   : { type: String, default: '' },
+  image  : { type: String, default: '' },
   date   : { type: Date, default: Date.now },
   modified : { type: Date, default: Date.now },
   hidden : Boolean

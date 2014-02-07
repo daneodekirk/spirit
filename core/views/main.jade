@@ -10,8 +10,20 @@ html
   body
     block splash
       a.splash(style="background-image:url("+ Spirit.image +")",href="/")
+
     block content
+
     block admin
+      div.navbar.navbar-default.navbar-fixed-bottom(role='navigation')
+        div.navbar-collapse.collapse.navbar-right
+          ul.nav.navbar-nav
+            li
+              a.danger(type='submit',href='/post/update') Remove
+            li
+              a(type='submit',href='/post/update') Save
+            li
+              a(type='submit',href='/post/update') Publish
+      
 
   block footer
   script(type='text/javascript', src='/admin.dev.js')

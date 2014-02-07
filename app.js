@@ -2,11 +2,14 @@ var express  = require('express')
 var path     = require('path')
 var mongoose = require('mongoose')
 var busboy   = require('connect-busboy')
+var override = require('connect-acceptoverride')
 var app      = express()
+
 
 app.use( express.json() )
 app.use( express.urlencoded() )
 app.use( busboy() )
+app.use( override() )
 
 app.use( express.static( path.join( __dirname, 'assets' )))
 app.use( express.static( path.join( __dirname, 'core/assets' )))
