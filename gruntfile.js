@@ -25,15 +25,15 @@ module.exports = function(grunt) {
           'core/assets/libraries/editor/medium-editor.js',
           'core/assets/libraries/editor/medium-editor-insert-plugin.js',
           'core/assets/libraries/editor/medium-editor-insert-images.js',
-//          'assets/js/admin/moment.js',
-//          'assets/js/admin/chrono.min.js',
+          'core/assets/libraries/moment.js',
+          'core/assets/libraries/chrono.min.js',
         ],
         custom: [
           'core/assets/uploader/uploader.js',
           'core/assets/post/post.js',
           'core/assets/editables/editables.js',
           'core/assets/libraries/jquery.contenteditable.js',
-//          'core/assets//edit-post-date.js',
+          'core/assets/dates/dates.js',
         ],
         src: [ '<%= concat.admin.libraries %>', '<%= concat.admin.custom %>' ],
         dest: 'assets/admin.dev.js'

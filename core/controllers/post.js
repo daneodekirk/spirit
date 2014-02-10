@@ -46,11 +46,16 @@ module.exports = function ( app ) {
 
     console.log('putting')
     Post.findOne({ _id : req.params.id }, function(err, post) {
-      console.log('putted')
       console.log(post)
       console.log(req.body)
       if (err) throw err;
-      post.update( {title: req.body.title}, function(err, post) {
+
+      //[TODO] add additional fields to save
+      post.title = req.body.title
+      post.body  = req.body.body
+      post.date  = req.body.date
+
+      post.save( function(err, post) {
 
         res.send( post )
 
