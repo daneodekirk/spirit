@@ -4,14 +4,20 @@ block head
   script.
     var postdata=!{JSON.stringify(post)}
 
+block splash
+  a.splash.dropspot.drag-over(style="background-image:url("+ Spirit.image +")", href="/")
+    | Drop image to replace this one
+
 block content
   div.container
-    form(action='/api/post/'+ post._id, method='post')
+    form.post(action='/post/'+ post._id, method='post')
       h1#title.editable(data-placeholder='Title',data-disable-toolbar='true') #{post.title}
+
       div.date(contenteditable='true') #{post.date}
       input.timestamp(name='date',type='hidden',value=post.date)
+
       div#body.editable(data-placeholder='Type some text') !{post.body}
+
       input#image(type='hidden',name='image',value=post.image)
       input#id(type='hidden',name='id',value=post._id)
-      input(type='submit',value='submit') 
-      a.btn.delete Remove
+      input.status(type='hidden',name='status',value=post.status)

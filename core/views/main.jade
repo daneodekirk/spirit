@@ -16,14 +16,11 @@ html
     block admin
       div.navbar.navbar-default.navbar-fixed-bottom(role='navigation')
         div.navbar-collapse.collapse.navbar-right
-          ul.nav.navbar-nav
+          ul.nav.navbar-nav.admin-bar
             li
-              a.danger(type='submit',href='/post/update') Remove
+              a.danger(type='submit') Remove
             li
-              a(type='submit',href='/post/update') Save
-            li
-              a(type='submit',href='/post/update') Publish
-      
+              a.save(type='submit') Save
 
   block footer
   script(type='text/javascript', src='/admin.dev.js')

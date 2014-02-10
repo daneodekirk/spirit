@@ -4381,28 +4381,34 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
 
   var AddPostView = Backbone.View.extend({
 
-    el : 'form', 
+    el : '.admin-bar', 
 
     events : {
-      'submit' : 'add' ,
-      'click a.delete' : 'remove'
+      'click a.save'    : 'save' ,
+      'click a.delete'  : 'remove',
+      'click a.publish' : 'publish',
     },
 
     initialize : function(options) {
-      _.bindAll(this, 'add', 'remove' ) 
+      _.bindAll(this, 'save', 'remove', 'publish' ) 
+      this.$form = $('form.post')
     },
 
-    add : function(e) {
-
+    save : function(e) {
       e.preventDefault()
-      var formdata = this.$el.serializeJSON()
+      var formdata = this.$form.serializeJSON()
       this.model.save( formdata , { wait: true } ) 
-
     },
 
     remove: function(e) {
       e.preventDefault()
       this.model.destroy() 
+    },
+
+    publish: function(e) {
+      e.preventDefault()   
+      this.$form.find('.status').val( 'published' )
+      this.save()
     }
 
   })
@@ -4505,21 +4511,23 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
 
     el: '.date',
 
-    //model : SpiritDate,
-
     events: {
-      'input' : 'date',
+      'input' : 'parse',
+      'blur'  : 'date'
     },
 
-    date: _.debounce( function( e ) {
+    parse: _.debounce( function( e ) {
       var parsed = chrono.parseDate( e.currentTarget.innerHTML )
       if ( moment( parsed ).isValid() ) 
-        $('.timestamp').val( new Date(parsed) )
-        //this.model.save({ date : parsed })
-    }, 1000 )
+        $('.timestamp').val( parsed )
+    }, 100 ),
+
+    date : function(e) {
+      var date = $('.timestamp').val() 
+      this.$el.html( moment(date).format('MMMM Do YYYY, h:mm a'))
+    }
   
   })  
-  
 
   var spiritdateview = new SpiritDateView()
 

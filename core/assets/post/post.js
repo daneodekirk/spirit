@@ -18,28 +18,34 @@
 
   var AddPostView = Backbone.View.extend({
 
-    el : 'form', 
+    el : '.admin-bar', 
 
     events : {
-      'submit' : 'add' ,
-      'click a.delete' : 'remove'
+      'click a.save'    : 'save' ,
+      'click a.delete'  : 'remove',
+      'click a.publish' : 'publish',
     },
 
     initialize : function(options) {
-      _.bindAll(this, 'add', 'remove' ) 
+      _.bindAll(this, 'save', 'remove', 'publish' ) 
+      this.$form = $('form.post')
     },
 
-    add : function(e) {
-
+    save : function(e) {
       e.preventDefault()
-      var formdata = this.$el.serializeJSON()
+      var formdata = this.$form.serializeJSON()
       this.model.save( formdata , { wait: true } ) 
-
     },
 
     remove: function(e) {
       e.preventDefault()
       this.model.destroy() 
+    },
+
+    publish: function(e) {
+      e.preventDefault()   
+      this.$form.find('.status').val( 'published' )
+      this.save()
     }
 
   })

@@ -4,18 +4,21 @@
 
     el: '.date',
 
-    //model : SpiritDate,
-
     events: {
-      'input' : 'date',
+      'input' : 'parse',
+      'blur'  : 'date'
     },
 
-    date: _.debounce( function( e ) {
+    parse: _.debounce( function( e ) {
       var parsed = chrono.parseDate( e.currentTarget.innerHTML )
       if ( moment( parsed ).isValid() ) 
         $('.timestamp').val( parsed )
-        //this.model.save({ date : parsed })
-    }, 1000 )
+    }, 100 ),
+
+    date : function(e) {
+      var date = $('.timestamp').val() 
+      this.$el.html( moment(date).format('MMMM Do YYYY, h:mm a'))
+    }
   
   })  
 
