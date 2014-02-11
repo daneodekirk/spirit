@@ -4371,11 +4371,16 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
     urlRoot: '/post',
 
     validate: function(attrs) {
-      console.log('validating ' + JSON.stringify( attrs ) )
+      //return 'you need a title';
     },
     
     initialize: function( options ) {
       this.fetch()
+      this.on('invalid', this.invalid )
+    }, 
+
+    invalid : function( model, error ) {
+      alert(error) 
     }
 
   })

@@ -1,11 +1,19 @@
 extends main
 
 block content
-  h1 #{title}
-  each post in posts
-    p 
-      a(href='/post/'+post._id) #{post.title} 
-      | - #{post.slug}
-      | - #{post._id}
-      | - 
-      a(href="/post/delete/?id="+post._id) Delete
+  div.container
+    h1 #{title}
+    each post in posts
+      p 
+        a(href='/post/'+post._id) #{post.title} 
+        | - #{post.slug}
+        | - #{post._id}
+        | - 
+        a(href="/post/delete/?id="+post._id) Delete
+
+block admin
+  div.navbar.navbar-default.navbar-fixed-bottom(role='navigation')
+    div.navbar-collapse.collapse.navbar-right
+      ul.nav.navbar-nav.spirit-bar
+        li
+          a.new(href="/post",title="New post") New post

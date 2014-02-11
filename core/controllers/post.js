@@ -3,9 +3,11 @@ var Post = require('../models/post')
 module.exports = function ( app ) {
 
   app.get( '/', function(req, res) {
-    Post.find( function( err, posts) {
-      res.render('posts', { posts : posts })
-    })
+    Post.find({})
+      .sort({date:-1})
+      .exec( function( err, posts) {
+        res.render('posts', { posts : posts })
+      })
   })
 
   // read
@@ -13,11 +15,12 @@ module.exports = function ( app ) {
 
     Post.findOne({ _id : req.params.id }, function( err, post ) {
 
-      post = ( ! post ) ? new Post() : post
+      var template = ( ! post ) ? 'post/new' : 'post/single'
+      //post = ( ! post ) ? new Post() : post
     
       res.format({
         html : function() {
-          res.render('post/new', { post : post })
+          res.render( template , { post : post || {} })
         },
 
         json : function() {
@@ -31,11 +34,12 @@ module.exports = function ( app ) {
   })
 
   // create
-  app.post('/post/:id', function(req, res) {
+  app.post('/post', function(req, res) {
 
     var post = new Post( req.body )
 
     post.save( function(err, post) {
+      console.log('inserting new post')
       res.send( post )
     })
 
