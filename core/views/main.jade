@@ -9,7 +9,8 @@ html
 
   body
     block splash
-      a.splash(style="background-image:url("+ Spirit.image +")",href="/")
+      div.splash
+        a(style="background-image:url("+ Spirit.image +")",href="/")
 
     block content
 
@@ -18,7 +19,7 @@ html
         div.navbar-collapse.collapse.navbar-right
           ul.nav.navbar-nav.admin-bar
             li
-              a.danger(type='submit') Remove
+              a.delete(type='submit') Delete
             li
               a.save(type='submit') Save
 

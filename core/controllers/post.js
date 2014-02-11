@@ -9,7 +9,7 @@ module.exports = function ( app ) {
   })
 
   // read
-  app.get( '/post/:id', function(req, res) {
+  app.get( '/post/:id?', function(req, res) {
 
     Post.findOne({ _id : req.params.id }, function( err, post ) {
 
@@ -68,7 +68,8 @@ module.exports = function ( app ) {
   app.del( '/post/:id',  function(req, res) {
     Post.findOne({ _id : req.params.id }, function(err, post) {
       post.remove()  
-      res.send( post )
+      console.log('found and deleted post')
+      res.redirect( '/' )
     })
   })
 

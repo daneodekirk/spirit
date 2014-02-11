@@ -4385,12 +4385,12 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
 
     events : {
       'click a.save'    : 'save' ,
-      'click a.delete'  : 'remove',
+      'click a.delete'  : 'delete',
       'click a.publish' : 'publish',
     },
 
     initialize : function(options) {
-      _.bindAll(this, 'save', 'remove', 'publish' ) 
+      _.bindAll(this, 'save', 'delete', 'publish' ) 
       this.$form = $('form.post')
     },
 
@@ -4400,8 +4400,7 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
       this.model.save( formdata , { wait: true } ) 
     },
 
-    remove: function(e) {
-      e.preventDefault()
+    delete: function(e) {
       this.model.destroy() 
     },
 
@@ -4424,6 +4423,10 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
 
     el : '.editable',
     template : '<textarea id="textarea-<%= id %>" name="<%= id %>" class="hidden mirror"><%= content %></textarea>',
+
+    defaults : {
+      disableHTML : false 
+    },
 
     events : {
       'input' : 'mirror'
@@ -4448,45 +4451,11 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
     mirror: function(e) {
       var content = this.editor.serialize()[e.target.id].value
       $( '#textarea-'+e.target.id ).val( content )
-      //this.$el.closest('form').data( 'editables', this.editor.serialize() )
     }
   
   })
 
   var editables = new EditableView();
-
-
-//  var FormView = Backbone.View.extend({
-//
-//    el : 'form',
-//
-//    events: {
-//      'submit' : 'submit' 
-//    },
-//
-//    submit: function() {
-//      var editables = this.$el.data( 'editables' ) 
-//      _.zip(_.keys( editables ), _.pluck( editables , 'value'))
-//    }
-//
-//
-//  })
-//  $('form').submit(function() {
-//
-//    var $this = $(this)
-//      , post = editor.serialize()
-//
-//    $.post( $this.attr('action'), {
-//
-//      title : $(post.title.value).text(),
-//      body  : post.body.value,
-//      image : $('#image').val(),
-//      id    : $('#id').val()
-//
-//    });
-//
-//    return false;   
-//  })
 
 })(jQuery)
 ;// loaded after editables.js

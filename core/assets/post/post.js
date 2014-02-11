@@ -22,12 +22,12 @@
 
     events : {
       'click a.save'    : 'save' ,
-      'click a.delete'  : 'remove',
+      'click a.delete'  : 'delete',
       'click a.publish' : 'publish',
     },
 
     initialize : function(options) {
-      _.bindAll(this, 'save', 'remove', 'publish' ) 
+      _.bindAll(this, 'save', 'delete', 'publish' ) 
       this.$form = $('form.post')
     },
 
@@ -37,8 +37,7 @@
       this.model.save( formdata , { wait: true } ) 
     },
 
-    remove: function(e) {
-      e.preventDefault()
+    delete: function(e) {
       this.model.destroy() 
     },
 
