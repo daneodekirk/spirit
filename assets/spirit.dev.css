@@ -265,7 +265,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
@@ -2445,4 +2445,7 @@ input[type="button"].btn-block {
 }
 .affix {
   position: fixed;
+}
+.date {
+  font-weight: 300;
 }

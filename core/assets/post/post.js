@@ -18,7 +18,7 @@
 
   var AddPostView = Backbone.View.extend({
 
-    el : '.admin-bar', 
+    el : '.spirit-bar', 
 
     events : {
       'click a.save'    : 'save' ,

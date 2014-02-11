@@ -22,6 +22,9 @@
   -o-transition: opacity 250ms;
   transition: opacity 250ms;
 }
+.splash.dropspot a {
+  text-decoration: none;
+}
 .splash.dropspot:hover > .drag-over {
   opacity: 1;
 }
@@ -123,7 +126,7 @@
 }
 .medium-editor-toolbar li button:hover {
   color: yellow;
-  background-color: #000000;
+  background-color: #000;
 }
 .medium-editor-toolbar li .medium-editor-button-first {
   -moz-border-radius-topleft: 5px;
@@ -148,7 +151,7 @@
   background: -moz-linear-gradient(bottom, #242424, rgba(0, 0, 0, 0.89));
   background: -o-linear-gradient(bottom, #242424, rgba(0, 0, 0, 0.89));
   background: linear-gradient(bottom, #242424, rgba(0, 0, 0, 0.89));
-  color: #ffffff;
+  color: #fff;
 }
 .medium-editor-toolbar li .medium-editor-action-underline {
   text-decoration: underline;
@@ -465,12 +468,14 @@ blockquote {
 .mediumInsert {
   position: relative;
   margin: -1em 0 -1em -80px;
-  min-height: 18px;
+  min-height: 35px;
+  line-height: 35px;
+  text-align: center;
 }
 .mediumInsert .mediumInsert-buttons {
   position: absolute;
   display: none;
-  width: 80px;
+  width: 100%;
   top: 0;
   left: 0;
   color: #ddd;
@@ -538,7 +543,7 @@ blockquote {
 }
 .mediumInsert .mediumInsert-placeholder .mediumInsert-maps {
   padding: 10px;
-  background: #cccccc;
+  background: #ccc;
 }
 .mediumInsert.hover .mediumInsert-placeholder {
   background: #f0f0f0;
@@ -552,8 +557,18 @@ blockquote {
   margin-right: 30px;
 }
 .hover .mediumInsert-placeholder {
-  min-height: 14px;
+  min-height: 35px;
   border: 1px dashed #ddd;
   margin-top: -1px;
   margin-bottom: -1px;
+}
+/* upload button */
+a.mediumInsert-action.action-images-add {
+  text-decoration: none;
+}
+.spirit-bar a {
+  cursor: pointer;
+}
+.spirit-bar .delete:hover {
+  color: red !important;
 }

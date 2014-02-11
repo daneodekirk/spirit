@@ -1537,7 +1537,7 @@ if (typeof module === 'object') {
       var that = this,
           $el = $.fn.mediumInsert.insert.$el,
           insertBlock = '',
-          insertImage = '<a class="mediumInsert-action action-images-add">Image</a>',
+          insertImage = '<a class="mediumInsert-action action-images-add">Upload image</a>',
           insertMap = '<a class="mediumInsert-action action-maps-add">Map</a>';
          
       if($.fn.mediumInsert.settings.images === true && $.fn.mediumInsert.settings.maps === true) {
@@ -1642,7 +1642,8 @@ if (typeof module === 'object') {
       
   };
  
-}(jQuery));;/*!
+}(jQuery));
+;/*!
  * medium-editor-insert-plugin v0.1.1 - jQuery insert plugin for MediumEditor
  *
  * Images Addon
@@ -4381,7 +4382,7 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
 
   var AddPostView = Backbone.View.extend({
 
-    el : '.admin-bar', 
+    el : '.spirit-bar', 
 
     events : {
       'click a.save'    : 'save' ,

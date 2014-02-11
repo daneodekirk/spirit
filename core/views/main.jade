@@ -3,25 +3,29 @@ html
   head 
     title #{Spirit.title}
     meta(content=Spirit.description, name="description")
+    link(href='//fonts.googleapis.com/css?family=Raleway:400,200',rel='stylesheet',type='text/css')
     link(rel='stylesheet', href='/spirit.dev.css')
+    <link href='' rel='stylesheet' type='text/css'>
     script(type='text/javascript', src='/spirit.dev.js')
     block head
 
   body
     block splash
-      div.splash
-        a(style="background-image:url("+ Spirit.image +")",href="/")
+      div.splash(style="background-image:url("+ Spirit.image +")")
+        a(href='/')
 
     block content
 
     block admin
       div.navbar.navbar-default.navbar-fixed-bottom(role='navigation')
         div.navbar-collapse.collapse.navbar-right
-          ul.nav.navbar-nav.admin-bar
+          ul.nav.navbar-nav.spirit-bar
             li
               a.delete(type='submit') Delete
             li
               a.save(type='submit') Save
+            li
+              a.save(type='submit') Publish
 
   block footer
   script(type='text/javascript', src='/admin.dev.js')
