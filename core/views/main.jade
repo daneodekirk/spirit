@@ -17,15 +17,16 @@ html
     block content
 
     block admin
-      div.navbar.navbar-default.navbar-fixed-bottom(role='navigation')
-        div.navbar-collapse.collapse.navbar-right
-          ul.nav.navbar-nav.spirit-bar
-            li
-              a.delete(type='submit') Delete
-            li
-              a.save(type='submit') Save
-            li
-              a.save(type='submit') Publish
+      if ( post ) 
+        div.navbar.navbar-default.navbar-fixed-bottom(role='navigation')
+          div.navbar-collapse.collapse.navbar-right
+            ul.nav.navbar-nav.spirit-bar
+              li
+                a.delete(type='submit') Delete
+              li
+                a.save(type='submit') Save
+              li
+                a.save(type='submit',data-status="",data-id=post._id ) Publish
 
   block footer
   script(type='text/javascript', src='/admin.dev.js')
