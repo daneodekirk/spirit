@@ -18,6 +18,10 @@
     date : function(e) {
       var date = $('.timestamp').val() 
       this.$el.html( moment(date).format('MMMM Do YYYY, h:mm a'))
+    },
+
+    initialize: function( options ) {
+      this.date()
     }
   
   })  
