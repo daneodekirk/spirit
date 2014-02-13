@@ -18,9 +18,10 @@ html
 
     block admin
       if ( post ) 
-        div.navbar.navbar-default.navbar-fixed-bottom(role='navigation')
+        div.navbar.navbar-default.navbar-fixed-bottom.spirit-bar(role='navigation')
+          p.navbar-text.notification
           div.navbar-collapse.collapse.navbar-right
-            ul.nav.navbar-nav.spirit-bar
+            ul.nav.navbar-nav
               li
                 a.delete(type='submit') Delete
               li

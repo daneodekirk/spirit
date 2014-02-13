@@ -34,6 +34,7 @@ module.exports = function(grunt) {
           'core/assets/editables/editables.js',
           'core/assets/libraries/jquery.contenteditable.js',
           'core/assets/dates/dates.js',
+          'core/assets/notify/notify.js',
         ],
         src: [ '<%= concat.admin.libraries %>', '<%= concat.admin.custom %>' ],
         dest: 'assets/admin.dev.js'

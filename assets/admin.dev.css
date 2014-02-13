@@ -538,9 +538,18 @@ a.mediumInsert-action.action-images-add {
   color: #fff;
   font-style: italic;
 }
+.spirit-bar {
+  overflow: hidden;
+}
 .spirit-bar a {
   cursor: pointer;
 }
 .spirit-bar .delete:hover {
   color: red !important;
+}
+.notification {
+  position: absolute;
+  bottom: -40px;
+  margin-top: 0;
+  opacity: 0;
 }

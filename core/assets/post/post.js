@@ -17,7 +17,7 @@
 
     invalid : function( model, error ) {
       alert(error) 
-    }
+    },
 
   })
 
@@ -32,8 +32,14 @@
     },
 
     initialize : function(options) {
-      _.bindAll(this, 'save', 'delete', 'publish' ) 
+      _.bindAll(this, 'save', 'delete', 'publish', 'notify' ) 
+      this.model.on( 'sync', this.notify )
       this.$form = $('form.post')
+    },
+
+    notify : function( model, response ) {
+      console.log(model, response)
+      Spirit.Notify.message( 'post saved' )
     },
 
     save : function(e) {
