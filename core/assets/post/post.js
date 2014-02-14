@@ -67,7 +67,7 @@
   })
 
 
-  var post = new Post({ _id : postdata._id })
-    , postsview = new AddPostView({ model : post })
+  //var post = new Post({ _id : postdata._id })
+  //  , postsview = new AddPostView({ model : post })
 
 })(jQuery)

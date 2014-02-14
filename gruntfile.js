@@ -13,6 +13,7 @@ module.exports = function(grunt) {
           'core/assets/libraries/backbone.js',
         ],
         custom: [
+          'core/assets/spirit.js',  
         ],
         src: [ '<%= concat.client.libraries %>', '<%= concat.client.custom %>' ],
         dest: 'assets/spirit.dev.js'
@@ -29,12 +30,12 @@ module.exports = function(grunt) {
           'core/assets/libraries/chrono.min.js',
         ],
         custom: [
-          'core/assets/uploader/uploader.js',
-          'core/assets/post/post.js',
-          'core/assets/editables/editables.js',
           'core/assets/libraries/jquery.contenteditable.js',
-          'core/assets/dates/dates.js',
-          'core/assets/notify/notify.js',
+          'core/assets/uploader/*.js',
+          'core/assets/post/*.js',
+          'core/assets/editables/*.js',
+          'core/assets/dates/*.js',
+          'core/assets/notify/*.js',
         ],
         src: [ '<%= concat.admin.libraries %>', '<%= concat.admin.custom %>' ],
         dest: 'assets/admin.dev.js'

@@ -1,4 +1,4 @@
-window.Spirit = {}
+window.Spirit = Spirit || {}
 
 Spirit.Notify = {
 
