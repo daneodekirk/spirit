@@ -5,7 +5,7 @@ var mongoose = require('mongoose')
 
 var Post = new Schema({
   title  : { type: String, default: 'Post title' }, 
-  author : { type: String, default: '' },
+  author : { type: Schema.Types.ObjectId, ref: 'User' },
   body   : { type: String, default: 'Post content' },
   slug   : { type: String, default: '' },
   image  : { type: String, default: '' },

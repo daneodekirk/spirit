@@ -13,7 +13,10 @@
     "slug": "~0.4.0",
     "jade": "~1.0.2",
     "connect-busboy": "~0.0.1",
-    "connect-acceptoverride": "0.0.3"
+    "connect-acceptoverride": "0.0.3",
+    "passport": "~0.2.0",
+    "passport-google": "~0.3.0",
+    "underscore": "~1.6.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

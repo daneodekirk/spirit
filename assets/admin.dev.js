@@ -4462,6 +4462,7 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
 
     mirror: function(e) {
       var content = this.editor.serialize()[e.target.id].value
+        console.log(content)
       $( '#textarea-'+e.target.id ).val( content )
     }
   

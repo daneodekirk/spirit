@@ -6,5 +6,6 @@ module.exports = function( app ) {
   require('./settings')(app)
   require('./uploader')(app)
   require('./post')(app)
+  require('./user')(app)
 
 }

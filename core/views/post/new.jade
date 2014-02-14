@@ -16,6 +16,8 @@ block content
       div.date(contenteditable='true') #{post.date}
       input.timestamp(name='date',type='hidden',value=post.date)
 
+      //div#author.editable(data-placeholder=Spirit.helpers.currentUser().name )
+
       div#body.editable(data-placeholder='Type some text') !{post.body}
 
       input#image(type='hidden',name='image',value=post.image)

@@ -37,9 +37,11 @@ module.exports = function ( app ) {
   app.post('/post', function(req, res) {
 
     var post = new Post( req.body )
+    console.log(post)
 
-    post.save( function(err, post) {
-      console.log('inserting new post')
+    // [TODO] this should redirect to the new post 
+    post.save( function(err) {
+      console.log('inserting new post ' + post._id )
       res.send( post )
     })
 
@@ -50,17 +52,18 @@ module.exports = function ( app ) {
 
     console.log('putting')
     Post.findOne({ _id : req.params.id }, function(err, post) {
-      console.log(post)
-      console.log(req.body)
       if (err) throw err;
 
+      console.log(post)
       //[TODO] add additional fields to save
-      post.title = req.body.title
-      post.body  = req.body.body
-      post.date  = req.body.date
+      post.title  = req.body.title
+      post.body   = req.body.body
+      post.date   = req.body.date
+      post.author = req.body.author
 
-      post.save( function(err, post) {
-
+      post.save( function(err) {
+        if (err) throw err
+        console.log('post updated')
         res.send( post )
 
       } )
