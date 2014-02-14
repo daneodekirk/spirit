@@ -36,4 +36,10 @@ mongoose.connect( 'mongodb://localhost/spirit', function (err) {
   console.log('Listening on port 3000')
 })
 
+
+app.get('/test', function(req, res) {
+  console.log('here')
+  res.render('test')
+})
+
 console.log( 'Waiting for database connection' )

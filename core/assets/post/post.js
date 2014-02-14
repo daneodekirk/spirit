@@ -34,7 +34,13 @@
     initialize : function(options) {
       _.bindAll(this, 'save', 'delete', 'publish', 'notify' ) 
       this.model.on( 'sync', this.notify )
+      this.model.on( 'destroy', this.navigate )
       this.$form = $('form.post')
+    },
+
+    // [TODO] use a router instead?
+    navigate : function() {
+      window.location = '/'
     },
 
     notify : function( model, response ) {
@@ -49,7 +55,7 @@
     },
 
     delete: function(e) {
-      this.model.destroy() 
+      this.model.destroy({ wait: true }) 
     },
 
     publish: function(e) {

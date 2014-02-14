@@ -74,9 +74,10 @@ module.exports = function ( app ) {
   // delete
   app.del( '/post/:id',  function(req, res) {
     Post.findOne({ _id : req.params.id }, function(err, post) {
+      if (err) throw err;
       post.remove()  
       console.log('found and deleted post')
-      res.redirect( '/' )
+      res.send({})
     })
   })
 

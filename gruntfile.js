@@ -96,7 +96,7 @@ module.exports = function(grunt) {
     watch: {
       js: {
         files: [ '<%= concat.client.src %>', '<%= concat.admin.src %>' ],
-        tasks: [ 'default' ]
+        tasks: [ 'js' ]
       },
       css: {
         files: [ 'core/assets/*.less', 'core/assets/*/*.less', 'core/assets/*/*/*.less' ],
@@ -113,6 +113,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'notify', 'less']);
+  grunt.registerTask('js',  ['jshint', 'concat', 'notify' ]);
   grunt.registerTask('css', [ 'less', 'notify' ]);
 
 };

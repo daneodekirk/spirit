@@ -37,6 +37,8 @@
   
   })
 
-  var editables = new EditableView();
+  //var editables = new EditableView();
+
+  var editor = new MediumEditor( '#test' )
 
 })(jQuery)

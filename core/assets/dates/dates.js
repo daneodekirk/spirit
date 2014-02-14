@@ -17,6 +17,7 @@
 
     date : function(e) {
       var date = $('.timestamp').val() 
+    console.log(date)
       this.$el.html( moment(date).format('MMMM Do YYYY, h:mm a'))
     },
 
