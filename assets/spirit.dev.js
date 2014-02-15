@@ -11698,13 +11698,20 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
 
 Spirit.prototype.start = function() {
 
-  var router = new Spirit.Routers.Editables()
-
-  Backbone.history.start({
-              pushState: true,
-              hashChange: false,
-  })
+//  var router = {}
+//  var router1 = new Spirit.Routers.Post()
+//  var router2 = new Spirit.Routers.Editables()
+//  _.map( Spirit.Routers, function( route, index) {
+//    _.extend( router.routes, route.routes )
+//  })
+//  console.log(router)
+//
+//  Backbone.history.start({
+//              pushState: true,
+//              hashChange: false,
+//  })
 
 }
+
 
 window.Spirit = new Spirit() 

@@ -1,60 +1,59 @@
-Spirit.Views.Editables = Backbone.View.extend({
+(function() {
 
-    template : '<textarea id="textarea-<%= id %>" name="<%= id %>" class="hidden mirror"><%= content %></textarea>',
+  'use strict';
 
-    defaults : {
-      disableHTML : false 
-    },
+  var EditableView = Backbone.View.extend({
 
-    events : {
-      'input' : 'mirror'
-    },
+      template : '<textarea id="textarea-<%= id %>" name="<%= id %>" class="hidden mirror"><%= content %></textarea>',
 
-    initialize: function( options ) {
-      _.bindAll( this, 'textarea' )
-      this.render()
-    },
+      defaults : {
+        disableHTML : false 
+      },
 
-    render : function() {
-      this.editor()
-      this.textarea()
-    },
+      events : {
+        'input' : 'mirror'
+      },
 
-    editor : function() {
-      this.editor = new MediumEditor( '#' + this.el.id )
-      this.$el.mediumInsert( { 
-        editor              : this.editor,
-        imagesUploadScript  : '/upload' 
-      })
-    },
+      initialize: function( options ) {
+        _.bindAll( this, 'textarea' )
+        this.render()
+      },
 
-    textarea : function( el, index ) {
+      render : function() {
+        this.editor()
+        this.textarea()
+      },
 
-      var textarea = _.template( this.template, { 
-        id: this.$el.get(index).id,
-        content : this.$el.html() 
-      } )
+      editor : function() {
+        this.editor = new MediumEditor( '#' + this.el.id )
+        this.$el.mediumInsert( { 
+          editor              : this.editor,
+          imagesUploadScript  : '/upload' 
+        })
+      },
 
-      this.$el.after( textarea ) 
-    },
+      textarea : function( el, index ) {
 
-    mirror: function(e) {
-      var content = this.editor.serialize()[e.target.id].value
-      $( '#textarea-'+e.target.id ).val( content )
-    }
-  
-})
+        var textarea = _.template( this.template, { 
+          id: this.$el.attr('id'),
+          content : this.$el.html() 
+        } )
 
-Spirit.Routers.Editables = Backbone.Router.extend({
+        this.$el.after( textarea ) 
+      },
 
-  routes: {
-    'post/' : 'view'
-  },
+      mirror: function(e) {
+        var content = this.editor.serialize()[e.target.id].value
+        $( '#textarea-'+e.target.id ).val( content )
+      }
+    
+  })
 
-  view : function() {
-    _.map( $('.editable'), function( element ) {
-      var view = new Spirit.Views.Editables({ el: element })
-    })
-  }
+  Spirit.Views.Editables = EditableView;
 
-})
+  _.map( $('.editable'), function( element ) {
+    var view = new Spirit.Views.Editables({ el: element })
+  })
+
+
+})();

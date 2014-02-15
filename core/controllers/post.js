@@ -36,6 +36,7 @@ module.exports = function ( app ) {
   // create
   app.post('/post', function(req, res) {
 
+    console.log(req.body)
     var post = new Post( req.body )
     console.log(post)
 

@@ -4407,152 +4407,174 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
   var dropspot = new Dropspot()
 
 })(jQuery)
-;(function($){
+;(function() {
 
+  'use strict';
+  
   var Post = Backbone.Model.extend({
 
-    idAttribute : '_id',
-    
-    urlRoot: '/post',
+      idAttribute : '_id',
+      
+      urlRoot: '/post',
 
-    validate: function(attrs) {
-      //return 'you need a title';
-    },
-    
-    initialize: function( options ) {
-      this.fetch()
-      this.on('invalid', this.invalid )
-    }, 
+      validate: function(attrs) {
+        //return 'you need a title';
+      },
+      
+      initialize: function( options ) {
+        this.fetch()
+        this.on('invalid', this.invalid )
+      }, 
 
-    invalid : function( model, error ) {
-      alert(error) 
-    },
-
-  })
-
-  var AddPostView = Backbone.View.extend({
-
-    el : '.spirit-bar', 
-
-    events : {
-      'click a.save'    : 'save' ,
-      'click a.delete'  : 'delete',
-      'click a.publish' : 'publish',
-    },
-
-    initialize : function(options) {
-      _.bindAll(this, 'save', 'delete', 'publish', 'notify' ) 
-      this.model.on( 'sync', this.notify )
-      this.model.on( 'destroy', this.navigate )
-      this.$form = $('form.post')
-    },
-
-    // [TODO] use a router instead?
-    navigate : function() {
-      window.location = '/'
-    },
-
-    notify : function( model, response ) {
-      console.log(model, response)
-      Spirit.Notify.message( 'post saved' )
-    },
-
-    save : function(e) {
-      e.preventDefault()
-      var formdata = this.$form.serializeJSON()
-      this.model.save( formdata , { wait: true } ) 
-    },
-
-    delete: function(e) {
-      this.model.destroy({ wait: true }) 
-    },
-
-    publish: function(e) {
-      e.preventDefault()   
-      this.$form.find('.status').val( 'published' )
-      this.save()
-    }
+      invalid : function( model, error ) {
+        alert(error) 
+      },
 
   })
 
+  Spirit.Models.Post = Post;
 
-  //var post = new Post({ _id : postdata._id })
-  //  , postsview = new AddPostView({ model : post })
+})();
+;// Spirit.Routers.Post = {
+// 
+//   routes: {
+//     'post/' : 'view'
+//   },
+// 
+//   view : function() {
+//     var post = new Spirit.Models.Post({})
+//       , postsview = new Spirit.Views.Post({ model : post })
+//   }
+// 
+// }
+;(function() {
 
-})(jQuery)
-;Spirit.Views.Editables = Backbone.View.extend({
+  'use strict';
 
-    template : '<textarea id="textarea-<%= id %>" name="<%= id %>" class="hidden mirror"><%= content %></textarea>',
+  var PostView = Backbone.View.extend({
 
-    defaults : {
-      disableHTML : false 
-    },
+      el : '.spirit-bar', 
 
-    events : {
-      'input' : 'mirror'
-    },
+      events : {
+        'click a.save'    : 'save' ,
+        'click a.delete'  : 'delete',
+        'click a.publish' : 'publish',
+      },
 
-    initialize: function( options ) {
-      _.bindAll( this, 'textarea' )
-      this.render()
-    },
+      initialize : function(options) {
+        _.bindAll(this, 'save', 'delete', 'publish', 'notify' ) 
+        this.model.on( 'sync', this.notify )
+        this.model.on( 'destroy', this.navigate )
+        this.$form = $('form.post')
+      },
 
-    render : function() {
-      this.editor()
-      this.textarea()
-    },
+      // [TODO] use a router instead?
+      navigate : function() {
+        window.location = '/'
+      },
 
-    editor : function() {
-      this.editor = new MediumEditor( '#' + this.el.id )
-      this.$el.mediumInsert( { 
-        editor              : this.editor,
-        imagesUploadScript  : '/upload' 
-      })
-    },
+      notify : function( model, response ) {
+        console.log(model, response)
+        Spirit.Notify.message( 'post saved' )
+      },
 
-    textarea : function( el, index ) {
+      save : function(e) {
+        e.preventDefault()
+        var formdata = this.$form.serializeJSON()
+        this.model.save( formdata , { wait: true } ) 
+      },
 
-      var textarea = _.template( this.template, { 
-        id: this.$el.get(index).id,
-        content : this.$el.html() 
-      } )
+      delete: function(e) {
+        this.model.destroy({ wait: true }) 
+      },
 
-      this.$el.after( textarea ) 
-    },
+      publish: function(e) {
+        e.preventDefault()   
+        this.$form.find('.status').val( 'published' )
+        this.save()
+      }
 
-    mirror: function(e) {
-      var content = this.editor.serialize()[e.target.id].value
-      $( '#textarea-'+e.target.id ).val( content )
-    }
-  
-})
+  })
 
-Spirit.Routers.Editables = Backbone.Router.extend({
+  Spirit.Views.Post = PostView;
 
-  routes: {
-    'post/' : 'view'
-  },
+    var post = new Spirit.Models.Post({})
+      , postsview = new Spirit.Views.Post({ model : post })
 
-  view : function() {
-    _.map( $('.editable'), function( element ) {
-      var view = new Spirit.Views.Editables({ el: element })
-    })
-  }
+})();
+;(function() {
 
-})
-;Spirit.Routers.Editables = Backbone.Router.extend({
+  'use strict';
 
-  routes: {
-    'post/' : 'view'
-  },
+  var EditableView = Backbone.View.extend({
 
-  view : function() {
-    _.map( $('.editable'), function( element ) {
-      var view = new Spirit.Views.Editables({ el: element })
-    })
-  }
+      template : '<textarea id="textarea-<%= id %>" name="<%= id %>" class="hidden mirror"><%= content %></textarea>',
 
-})
+      defaults : {
+        disableHTML : false 
+      },
+
+      events : {
+        'input' : 'mirror'
+      },
+
+      initialize: function( options ) {
+        _.bindAll( this, 'textarea' )
+        this.render()
+      },
+
+      render : function() {
+        this.editor()
+        this.textarea()
+      },
+
+      editor : function() {
+        this.editor = new MediumEditor( '#' + this.el.id )
+        this.$el.mediumInsert( { 
+          editor              : this.editor,
+          imagesUploadScript  : '/upload' 
+        })
+      },
+
+      textarea : function( el, index ) {
+
+        var textarea = _.template( this.template, { 
+          id: this.$el.attr('id'),
+          content : this.$el.html() 
+        } )
+
+        this.$el.after( textarea ) 
+      },
+
+      mirror: function(e) {
+        var content = this.editor.serialize()[e.target.id].value
+        $( '#textarea-'+e.target.id ).val( content )
+      }
+    
+  })
+
+  Spirit.Views.Editables = EditableView;
+
+  _.map( $('.editable'), function( element ) {
+    var view = new Spirit.Views.Editables({ el: element })
+  })
+
+
+})();
+;//Spirit.Routers.Editables = Backbone.Router.extend({
+//
+//  routes: {
+//    '*' : 'init'
+//  },
+//
+//  init : function() {
+//    console.log('editable router')
+//    _.map( $('.editable'), function( element ) {
+//      var view = new Spirit.Views.Editables({ el: element })
+//    })
+//  }
+//
+//})
 ;(function($) {
 
   var SpiritDateView = Backbone.View.extend({
