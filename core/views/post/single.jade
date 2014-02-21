@@ -1,23 +1,10 @@
 extends ../main
 
-block head
-  script.
-    var postdata=!{JSON.stringify(post)}
-
 block splash
-  div.splash.dropspot(style="background-image:url("+ ( post.image || Spirit.image ) +")")
-    a.drag-over(href="/") Drop in a new image
+  a.splash(href="/",style="background-image:url("+ ( post.image || Spirit.image ) +")")
 
 block content
   div.container
-    form.post(action='/post/'+ post._id, method='post')
-      h1#title.editable(data-placeholder='Title',data-disable-toolbar=true,data-disable-return=true) #{post.title}
-
-      div.date(contenteditable='true') #{post.date}
-      input.timestamp(name='date',type='hidden',value=post.date)
-
-      div#body.editable(data-placeholder='Type some text') !{post.body}
-
-      input#image.dropspot(type='hidden',name='image',value=post.image)
-      input#id(type='hidden',name='id',value=post._id)
-      input.status(type='hidden',name='status',value=post.status)
+    h1#title #{post.title}
+    div.date #{post.date}
+    p#body !{post.body}

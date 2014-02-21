@@ -12,7 +12,7 @@ module.exports = function ( app ) {
 
   app.get('/post', function(req, res) {
 
-    res.render('post/new', { post: {} })
+    res.render('post/edit', { post: {} })
   
   })
 
@@ -25,10 +25,12 @@ module.exports = function ( app ) {
 
       if (err) throw err;
 
+      var template = req.isAuthenticated() ? 'post/edit' : 'post/single';
+
       res.format({
 
         html : function() {
-          res.render( 'post/single' , { post : post || {} })
+          res.render( template , { post : post || {} })
         },
 
         json : function() {
