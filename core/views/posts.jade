@@ -6,10 +6,6 @@ block content
     each post in posts
       p 
         a(href='/post/'+post._id) #{post.title} 
-        | - #{post.slug}
-        | - #{post._id}
-        | - 
-        a(href="/post/delete/?id="+post._id) Delete
 
 block admin
   div.navbar.navbar-default.navbar-fixed-bottom(role='navigation')
