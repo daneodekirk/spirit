@@ -11703,7 +11703,8 @@ Spirit.prototype.start = function() {
     , datesview = new Spirit.Views.Date()
 
   _.map( $('.editable'), function( element ) {
-    var view = new Spirit.Views.Editable({ el: element })
+    var options = _.extend( {el : element}, $(element).data() )
+    var view = new Spirit.Views.Editable(options)
   })
 
 }

@@ -11,7 +11,7 @@ block splash
 block content
   div.container
     form.post(action='/post/'+ post._id, method='post')
-      h1#title.editable(data-placeholder='Title') #{post.title}
+      h1#title.editable(data-placeholder='Title', data-disable-html=true) #{post.title}
 
       div.date(contenteditable='true')
       input.timestamp(name='date',type='hidden',value=(new Date()))

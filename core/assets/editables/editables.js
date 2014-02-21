@@ -3,7 +3,7 @@ Spirit.Views.Editable = Backbone.View.extend({
     template : '<textarea id="textarea-<%= id %>" name="<%= id %>" class="hidden mirror"><%= content %></textarea>',
 
     defaults : {
-      disableHTML : false 
+      disableHtml : false 
     },
 
     events : {
@@ -11,6 +11,7 @@ Spirit.Views.Editable = Backbone.View.extend({
     },
 
     initialize: function( options ) {
+      _.extend( this.defaults, options )
       _.bindAll( this, 'textarea' )
       this.render()
     },
@@ -40,6 +41,8 @@ Spirit.Views.Editable = Backbone.View.extend({
 
     mirror: function(e) {
       var content = this.editor.serialize()[e.target.id].value
+      if ( this.defaults.disableHtml ) 
+        content = $(content).html()
       $( '#textarea-'+e.target.id ).val( content )
     }
   

@@ -5,7 +5,7 @@ Spirit.Models.Post = Backbone.Model.extend({
     urlRoot: '/post',
 
     validate: function(attrs) {
-      //return 'you need a title';
+      // [TODO] validation needed
     },
     
     initialize: function( options ) {

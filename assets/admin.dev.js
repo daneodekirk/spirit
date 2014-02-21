@@ -4414,7 +4414,7 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
     urlRoot: '/post',
 
     validate: function(attrs) {
-      //return 'you need a title';
+      // [TODO] validation needed
     },
     
     initialize: function( options ) {
@@ -4475,7 +4475,7 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
     template : '<textarea id="textarea-<%= id %>" name="<%= id %>" class="hidden mirror"><%= content %></textarea>',
 
     defaults : {
-      disableHTML : false 
+      disableHtml : false 
     },
 
     events : {
@@ -4483,6 +4483,7 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
     },
 
     initialize: function( options ) {
+      _.extend( this.defaults, options )
       _.bindAll( this, 'textarea' )
       this.render()
     },
@@ -4512,6 +4513,8 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
 
     mirror: function(e) {
       var content = this.editor.serialize()[e.target.id].value
+      if ( this.defaults.disableHtml ) 
+        content = $(content).html()
       $( '#textarea-'+e.target.id ).val( content )
     }
   
