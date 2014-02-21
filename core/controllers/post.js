@@ -10,17 +10,25 @@ module.exports = function ( app ) {
       })
   })
 
+  app.get('/post', function(req, res) {
+
+    res.render('post/new', { post: {} })
+  
+  })
+
   // read
-  app.get( '/post/:id?', function(req, res) {
+  app.get( '/post/:id', function(req, res) {
+
+    req.params.id = req.params.id.split('.')[0]
 
     Post.findOne({ _id : req.params.id }, function( err, post ) {
 
-      var template = ( ! post ) ? 'post/new' : 'post/single'
-    
+      if (err) throw err;
+
       res.format({
 
         html : function() {
-          res.render( template , { post : post || {} })
+          res.render( 'post/single' , { post : post || {} })
         },
 
         json : function() {
