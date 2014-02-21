@@ -1,32 +1,26 @@
-(function($) {
+Spirit.Views.Date =  Backbone.View.extend({
 
-  var SpiritDateView = Backbone.View.extend({
+  el: '.date',
 
-    el: '.date',
+  events: {
+    'input' : 'parse',
+    'blur'  : 'date'
+  },
 
-    events: {
-      'input' : 'parse',
-      'blur'  : 'date'
-    },
+  parse: _.debounce( function( e ) {
+    var parsed = chrono.parseDate( e.currentTarget.innerHTML )
+    if ( moment( parsed ).isValid() ) 
+      $('.timestamp').val( parsed )
+  }, 100 ),
 
-    parse: _.debounce( function( e ) {
-      var parsed = chrono.parseDate( e.currentTarget.innerHTML )
-      if ( moment( parsed ).isValid() ) 
-        $('.timestamp').val( parsed )
-    }, 100 ),
+  date : function(e) {
+    var date = $('.timestamp').val() 
+  console.log(date)
+    this.$el.html( moment(date).format('MMMM Do YYYY, h:mm a'))
+  },
 
-    date : function(e) {
-      var date = $('.timestamp').val() 
-    console.log(date)
-      this.$el.html( moment(date).format('MMMM Do YYYY, h:mm a'))
-    },
+  initialize: function( options ) {
+    this.date()
+  }
 
-    initialize: function( options ) {
-      this.date()
-    }
-  
-  })  
-
-  var spiritdateview = new SpiritDateView()
-
-})(jQuery)
+})  

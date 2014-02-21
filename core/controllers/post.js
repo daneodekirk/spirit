@@ -16,9 +16,9 @@ module.exports = function ( app ) {
     Post.findOne({ _id : req.params.id }, function( err, post ) {
 
       var template = ( ! post ) ? 'post/new' : 'post/single'
-      //post = ( ! post ) ? new Post() : post
     
       res.format({
+
         html : function() {
           res.render( template , { post : post || {} })
         },
@@ -36,9 +36,7 @@ module.exports = function ( app ) {
   // create
   app.post('/post', function(req, res) {
 
-    console.log(req.body)
     var post = new Post( req.body )
-    console.log(post)
 
     // [TODO] this should redirect to the new post 
     post.save( function(err) {

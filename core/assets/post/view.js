@@ -1,55 +1,44 @@
-(function() {
+Spirit.Views.Post =  Backbone.View.extend({
 
-  'use strict';
+    el : '.spirit-bar', 
 
-  var PostView = Backbone.View.extend({
+    events : {
+      'click a.save'    : 'save' ,
+      'click a.delete'  : 'delete',
+      'click a.publish' : 'publish',
+    },
 
-      el : '.spirit-bar', 
+    initialize : function(options) {
+      _.bindAll(this, 'save', 'delete', 'publish', 'notify' ) 
+      this.model.on( 'sync', this.notify )
+      this.model.on( 'destroy', this.navigate )
+      this.$form = $('form.post')
+    },
 
-      events : {
-        'click a.save'    : 'save' ,
-        'click a.delete'  : 'delete',
-        'click a.publish' : 'publish',
-      },
+    // [TODO] use a router instead?
+    navigate : function() {
+      window.location = '/'
+    },
 
-      initialize : function(options) {
-        _.bindAll(this, 'save', 'delete', 'publish', 'notify' ) 
-        this.model.on( 'sync', this.notify )
-        this.model.on( 'destroy', this.navigate )
-        this.$form = $('form.post')
-      },
+    notify : function( model, response ) {
+      console.log(model, response)
+      Spirit.Notify.message( 'post saved' )
+    },
 
-      // [TODO] use a router instead?
-      navigate : function() {
-        window.location = '/'
-      },
+    save : function(e) {
+      e.preventDefault()
+      var formdata = this.$form.serializeJSON()
+      this.model.save( formdata , { wait: true } ) 
+    },
 
-      notify : function( model, response ) {
-        console.log(model, response)
-        Spirit.Notify.message( 'post saved' )
-      },
+    delete: function(e) {
+      this.model.destroy({ wait: true }) 
+    },
 
-      save : function(e) {
-        e.preventDefault()
-        var formdata = this.$form.serializeJSON()
-        this.model.save( formdata , { wait: true } ) 
-      },
+    publish: function(e) {
+      e.preventDefault()   
+      this.$form.find('.status').val( 'published' )
+      this.save()
+    }
 
-      delete: function(e) {
-        this.model.destroy({ wait: true }) 
-      },
-
-      publish: function(e) {
-        e.preventDefault()   
-        this.$form.find('.status').val( 'published' )
-        this.save()
-      }
-
-  })
-
-  Spirit.Views.Post = PostView;
-
-    var post = new Spirit.Models.Post({})
-      , postsview = new Spirit.Views.Post({ model : post })
-
-})();
+})
