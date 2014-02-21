@@ -64,6 +64,7 @@ module.exports = function ( app ) {
       post.body   = req.body.body
       post.date   = req.body.date
       post.author = req.body.author
+      post.image  = req.body.image
 
       post.save( function(err) {
         if (err) throw err

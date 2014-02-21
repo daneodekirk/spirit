@@ -5,7 +5,7 @@ block head
     var postdata=!{JSON.stringify(post)}
 
 block splash
-  div.splash.dropspot(style="background-image:url("+ Spirit.image +")")
+  div.splash.dropspot(style="background-image:url("+ ( post.image || Spirit.image ) +")")
     a.drag-over(href="/") Drop in a new image
 
 block content
@@ -18,6 +18,6 @@ block content
 
       div#body.editable(data-placeholder='Type some text') !{post.body}
 
-      input#image(type='hidden',name='image',value=post.image)
+      input#image.dropspot(type='hidden',name='image',value=post.image)
       input#id(type='hidden',name='id',value=post._id)
       input.status(type='hidden',name='status',value=post.status)
