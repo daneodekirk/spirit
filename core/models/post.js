@@ -15,7 +15,7 @@ var Post = new Schema({
 })
 
 Post.pre( 'save', function( next ) {
-  this.slug = slug( this.title )
+  this.slug = slug( this.title ).toLowerCase()
   next()
 })
 
