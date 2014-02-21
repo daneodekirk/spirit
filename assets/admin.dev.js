@@ -4418,13 +4418,26 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
     },
     
     initialize: function( options ) {
-      this.fetch()
+      //this.fetch()
       this.on('invalid', this.invalid )
     }, 
 
     invalid : function( model, error ) {
       alert(error) 
     },
+
+})
+;Spirit.Router = Backbone.Router.extend({
+
+  routes : {
+    "post/:id" : "post"
+  },
+
+  initialize : function(options) {},
+
+  post : function(id) {
+    Spirit.live.post.model.set({_id:id})
+  }
 
 })
 ;Spirit.Views.Post =  Backbone.View.extend({

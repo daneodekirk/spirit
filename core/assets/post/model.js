@@ -9,7 +9,7 @@ Spirit.Models.Post = Backbone.Model.extend({
     },
     
     initialize: function( options ) {
-      this.fetch()
+      //this.fetch()
       this.on('invalid', this.invalid )
     }, 
 

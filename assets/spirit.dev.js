@@ -11691,6 +11691,7 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
   this.Models = {}
   this.Routers = {}
   this.Notify = {}
+  this.live = {}
 
   window.addEventListener( 'load', this.start, false );
 
@@ -11698,14 +11699,21 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
 
 Spirit.prototype.start = function() {
 
-  var post = new Spirit.Models.Post({})
-    , postsview = new Spirit.Views.Post({ model : post })
-    , datesview = new Spirit.Views.Date()
+  var post = new Spirit.Models.Post()
+  Spirit.live.post = { 
+    model    : post,
+    view     : new Spirit.Views.Post({ model : post }),
+    dateview : new Spirit.Views.Date(),
+  }
 
   _.map( $('.editable'), function( element ) {
     var options = _.extend( {el : element}, $(element).data() )
     var view = new Spirit.Views.Editable(options)
+  
   })
+
+  Spirit.live.router = new Spirit.Router()
+    Backbone.history.start({pushState:true})
 
 }
 
