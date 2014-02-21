@@ -4427,38 +4427,6 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
     },
 
 })
-;Spirit.Models.Post = Backbone.Model.extend({
-
-    idAttribute : '_id',
-    
-    urlRoot: '/post',
-
-    validate: function(attrs) {
-      //return 'you need a title';
-    },
-    
-    initialize: function( options ) {
-      this.fetch()
-      this.on('invalid', this.invalid )
-    }, 
-
-    invalid : function( model, error ) {
-      alert(error) 
-    },
-
-})
-;// Spirit.Routers.Post = {
-// 
-//   routes: {
-//     'post/' : 'view'
-//   },
-// 
-//   view : function() {
-//     var post = new Spirit.Models.Post({})
-//       , postsview = new Spirit.Views.Post({ model : post })
-//   }
-// 
-// }
 ;Spirit.Views.Post =  Backbone.View.extend({
 
     el : '.spirit-bar', 
@@ -4482,7 +4450,6 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
     },
 
     notify : function( model, response ) {
-      console.log(model, response)
       Spirit.Notify.message( 'post saved' )
     },
 
@@ -4503,79 +4470,52 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
     }
 
 })
-;(function() {
+;Spirit.Views.Editable = Backbone.View.extend({
 
-  'use strict';
+    template : '<textarea id="textarea-<%= id %>" name="<%= id %>" class="hidden mirror"><%= content %></textarea>',
 
-  var EditableView = Backbone.View.extend({
+    defaults : {
+      disableHTML : false 
+    },
 
-      template : '<textarea id="textarea-<%= id %>" name="<%= id %>" class="hidden mirror"><%= content %></textarea>',
+    events : {
+      'input' : 'mirror'
+    },
 
-      defaults : {
-        disableHTML : false 
-      },
+    initialize: function( options ) {
+      _.bindAll( this, 'textarea' )
+      this.render()
+    },
 
-      events : {
-        'input' : 'mirror'
-      },
+    render : function() {
+      this.editor()
+      this.textarea()
+    },
 
-      initialize: function( options ) {
-        _.bindAll( this, 'textarea' )
-        this.render()
-      },
+    editor : function() {
+      this.editor = new MediumEditor( '#' + this.el.id )
+      this.$el.mediumInsert( { 
+        editor              : this.editor,
+        imagesUploadScript  : '/upload' 
+      })
+    },
 
-      render : function() {
-        this.editor()
-        this.textarea()
-      },
+    textarea : function( el, index ) {
 
-      editor : function() {
-        this.editor = new MediumEditor( '#' + this.el.id )
-        this.$el.mediumInsert( { 
-          editor              : this.editor,
-          imagesUploadScript  : '/upload' 
-        })
-      },
+      var textarea = _.template( this.template, { 
+        id: this.$el.attr('id'),
+        content : this.$el.html() 
+      } )
 
-      textarea : function( el, index ) {
+      this.$el.after( textarea ) 
+    },
 
-        var textarea = _.template( this.template, { 
-          id: this.$el.attr('id'),
-          content : this.$el.html() 
-        } )
-
-        this.$el.after( textarea ) 
-      },
-
-      mirror: function(e) {
-        var content = this.editor.serialize()[e.target.id].value
-        $( '#textarea-'+e.target.id ).val( content )
-      }
-    
-  })
-
-  Spirit.Views.Editables = EditableView;
-
-  _.map( $('.editable'), function( element ) {
-    var view = new Spirit.Views.Editables({ el: element })
-  })
-
-
-})();
-;//Spirit.Routers.Editables = Backbone.Router.extend({
-//
-//  routes: {
-//    '*' : 'init'
-//  },
-//
-//  init : function() {
-//    console.log('editable router')
-//    _.map( $('.editable'), function( element ) {
-//      var view = new Spirit.Views.Editables({ el: element })
-//    })
-//  }
-//
-//})
+    mirror: function(e) {
+      var content = this.editor.serialize()[e.target.id].value
+      $( '#textarea-'+e.target.id ).val( content )
+    }
+  
+})
 ;Spirit.Views.Date =  Backbone.View.extend({
 
   el: '.date',
@@ -4593,7 +4533,6 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
 
   date : function(e) {
     var date = $('.timestamp').val() 
-  console.log(date)
     this.$el.html( moment(date).format('MMMM Do YYYY, h:mm a'))
   },
 
@@ -4619,7 +4558,6 @@ Spirit.Notify = {
     initialize : function( options ) {
       _.bindAll(this, 'animate', 'out', 'reset')
       this.options = _.defaults( options || {}, this.defaults );
-  console.log(this.options)
       this.render()
     },
 

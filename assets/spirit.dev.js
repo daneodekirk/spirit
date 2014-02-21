@@ -11698,9 +11698,13 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
 
 Spirit.prototype.start = function() {
 
-    var post = new Spirit.Models.Post({})
-      , postsview = new Spirit.Views.Post({ model : post })
-      , datesview = new Spirit.Views.Date()
+  var post = new Spirit.Models.Post({})
+    , postsview = new Spirit.Views.Post({ model : post })
+    , datesview = new Spirit.Views.Date()
+
+  _.map( $('.editable'), function( element ) {
+    var view = new Spirit.Views.Editable({ el: element })
+  })
 
 }
 

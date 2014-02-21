@@ -15,7 +15,6 @@ Spirit.Notify = {
     initialize : function( options ) {
       _.bindAll(this, 'animate', 'out', 'reset')
       this.options = _.defaults( options || {}, this.defaults );
-  console.log(this.options)
       this.render()
     },
 

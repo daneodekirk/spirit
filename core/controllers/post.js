@@ -40,7 +40,6 @@ module.exports = function ( app ) {
 
     // [TODO] this should redirect to the new post 
     post.save( function(err) {
-      console.log('inserting new post ' + post._id )
       res.send( post )
     })
 
@@ -49,11 +48,9 @@ module.exports = function ( app ) {
   // update
   app.put('/post/:id', function(req, res) {
 
-    console.log('putting')
     Post.findOne({ _id : req.params.id }, function(err, post) {
       if (err) throw err;
 
-      console.log(post)
       //[TODO] add additional fields to save
       post.title  = req.body.title
       post.body   = req.body.body
@@ -62,7 +59,6 @@ module.exports = function ( app ) {
 
       post.save( function(err) {
         if (err) throw err
-        console.log('post updated')
         res.send( post )
 
       } )
@@ -75,7 +71,6 @@ module.exports = function ( app ) {
     Post.findOne({ _id : req.params.id }, function(err, post) {
       if (err) throw err;
       post.remove()  
-      console.log('found and deleted post')
       res.send({})
     })
   })
@@ -94,7 +89,6 @@ module.exports = function ( app ) {
 //        .gte( startDate )
 //        .lt( endDate )
 //      .exec( function( err, post ) {
-//        console.log(post)
 //        if ( err ) throw err
 //        res.render( 'post/new', { post: post} )
 //        //res.send(post)

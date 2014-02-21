@@ -1,59 +1,46 @@
-(function() {
+Spirit.Views.Editable = Backbone.View.extend({
 
-  'use strict';
+    template : '<textarea id="textarea-<%= id %>" name="<%= id %>" class="hidden mirror"><%= content %></textarea>',
 
-  var EditableView = Backbone.View.extend({
+    defaults : {
+      disableHTML : false 
+    },
 
-      template : '<textarea id="textarea-<%= id %>" name="<%= id %>" class="hidden mirror"><%= content %></textarea>',
+    events : {
+      'input' : 'mirror'
+    },
 
-      defaults : {
-        disableHTML : false 
-      },
+    initialize: function( options ) {
+      _.bindAll( this, 'textarea' )
+      this.render()
+    },
 
-      events : {
-        'input' : 'mirror'
-      },
+    render : function() {
+      this.editor()
+      this.textarea()
+    },
 
-      initialize: function( options ) {
-        _.bindAll( this, 'textarea' )
-        this.render()
-      },
+    editor : function() {
+      this.editor = new MediumEditor( '#' + this.el.id )
+      this.$el.mediumInsert( { 
+        editor              : this.editor,
+        imagesUploadScript  : '/upload' 
+      })
+    },
 
-      render : function() {
-        this.editor()
-        this.textarea()
-      },
+    textarea : function( el, index ) {
 
-      editor : function() {
-        this.editor = new MediumEditor( '#' + this.el.id )
-        this.$el.mediumInsert( { 
-          editor              : this.editor,
-          imagesUploadScript  : '/upload' 
-        })
-      },
+      var textarea = _.template( this.template, { 
+        id: this.$el.attr('id'),
+        content : this.$el.html() 
+      } )
 
-      textarea : function( el, index ) {
+      this.$el.after( textarea ) 
+    },
 
-        var textarea = _.template( this.template, { 
-          id: this.$el.attr('id'),
-          content : this.$el.html() 
-        } )
-
-        this.$el.after( textarea ) 
-      },
-
-      mirror: function(e) {
-        var content = this.editor.serialize()[e.target.id].value
-        $( '#textarea-'+e.target.id ).val( content )
-      }
-    
-  })
-
-  Spirit.Views.Editables = EditableView;
-
-  _.map( $('.editable'), function( element ) {
-    var view = new Spirit.Views.Editables({ el: element })
-  })
-
-
-})();
+    mirror: function(e) {
+      var content = this.editor.serialize()[e.target.id].value
+      $( '#textarea-'+e.target.id ).val( content )
+    }
+  
+})

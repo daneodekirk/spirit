@@ -21,7 +21,6 @@ Spirit.Views.Post =  Backbone.View.extend({
     },
 
     notify : function( model, response ) {
-      console.log(model, response)
       Spirit.Notify.message( 'post saved' )
     },
 
