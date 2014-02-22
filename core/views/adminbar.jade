@@ -1,5 +1,10 @@
-div.navbar.navbar-default.navbar-fixed-bottom(role='navigation')
+div.navbar.navbar-default.navbar-fixed-bottom.spirit-bar(role='navigation')
+  p.navbar-text.notification
   div.navbar-collapse.collapse.navbar-right
     ul.nav.navbar-nav
       li
-        a(type='submit',href='/post/update') Save
+        a.delete(type='submit') Delete
+      li
+        a.save(type='submit') Save
+      li
+        a.save(type='submit') Publish

@@ -4541,11 +4541,11 @@ if(result.timezoneOffset){this.timezoneOffset=result.timezoneOffset}}chrono.Date
     'blur'  : 'date'
   },
 
-  parse: _.debounce( function( e ) {
+  parse: function( e ) {
     var parsed = chrono.parseDate( e.currentTarget.innerHTML )
     if ( moment( parsed ).isValid() ) 
       $('.timestamp').val( parsed )
-  }, 100 ),
+  },
 
   date : function(e) {
     var date = $('.timestamp').val() 

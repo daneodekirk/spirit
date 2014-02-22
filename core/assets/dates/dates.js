@@ -7,11 +7,11 @@ Spirit.Views.Date =  Backbone.View.extend({
     'blur'  : 'date'
   },
 
-  parse: _.debounce( function( e ) {
+  parse: function( e ) {
     var parsed = chrono.parseDate( e.currentTarget.innerHTML )
     if ( moment( parsed ).isValid() ) 
       $('.timestamp').val( parsed )
-  }, 100 ),
+  },
 
   date : function(e) {
     var date = $('.timestamp').val() 

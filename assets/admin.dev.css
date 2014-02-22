@@ -1,11 +1,3 @@
-.splash {
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 500px;
-  line-height: 500px;
-  background-size: 100%;
-}
 .splash.dropspot > .drag-over {
   position: absolute;
   width: 100%;

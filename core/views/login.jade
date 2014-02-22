@@ -1,4 +1,9 @@
 extends main
 
 block content
-  a(href='/auth/google') Sign on with Google
+  div.container
+    div.row
+      div.center-block.login
+        a.btn.btn-default.pagination-center(href='/auth/google') Sign in with Google
+        a.btn.btn-default.pagination-center() Sign in with Twitter
+        a.btn.btn-default.pagination-center() Sign in with Facebook

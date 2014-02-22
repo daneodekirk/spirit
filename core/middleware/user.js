@@ -26,8 +26,7 @@ module.exports = function( app ) {
 
 
   app.use( function(req, res, next) {
-    res.locals.Spirit.auth = true;
-    //res.locals.Spirit.auth = req.isAuthenticated()
+    res.locals.Spirit.authenticated = req.isAuthenticated()
     next()
   })
 

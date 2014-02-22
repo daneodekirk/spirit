@@ -16,22 +16,22 @@ html
 
     block content
 
-    if ( Spirit.auth ) 
+    if ( Spirit.authenticated ) 
       block admin
-          div.navbar.navbar-default.navbar-fixed-bottom.spirit-bar(role='navigation')
-            p.navbar-text.notification
-            div.navbar-collapse.collapse.navbar-right
-              ul.nav.navbar-nav
-                li
-                  a.delete(type='submit') Delete
-                li
-                  a.save(type='submit') Save
-                li
-                  a.save(type='submit') Publish
+        div.navbar.navbar-default.navbar-fixed-bottom.spirit-bar(role='navigation')
+          p.navbar-text.notification
+          div.navbar-collapse.collapse.navbar-right
+            ul.nav.navbar-nav
+              li
+                a.delete(type='submit') Delete
+              li
+                a.save(type='submit') Save
+              li
+                a.save(type='submit') Publish
 
   block footer
 
-  if ( Spirit.auth )
+  if ( Spirit.authenticated )
     block admin-footer
-      script(type='text/javascript', src='/admin.dev.js')
       link(rel="stylesheet", href="/admin.dev.css")
+      script(type='text/javascript', src='/admin.dev.js')
